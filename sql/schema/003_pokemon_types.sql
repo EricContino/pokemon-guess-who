@@ -303,5 +303,79 @@ INSERT INTO pokemon_types(natDexNum, typeId) VALUES (120, 11);
 -- Starmie
 INSERT INTO pokemon_types(natDexNum, typeId) VALUES (121, 11);
 INSERT INTO pokemon_types(natDexNum, typeId) VALUES (121, 14);
+-- Mr. Mime
+INSERT INTO pokemon_types(natDexNum, typeId) VALUES (122, 14);
+INSERT INTO pokemon_types(natDexNum, typeId) VALUES (122, 18);
+-- Scyther
+INSERT INTO pokemon_types(natDexNum, typeId) VALUES (123, 7);
+INSERT INTO pokemon_types(natDexNum, typeId) VALUES (123, 3);
+-- Jynx
+INSERT INTO pokemon_types(natDexNum, typeId) VALUES (124, 15);
+INSERT INTO pokemon_types(natDexNum, typeId) VALUES (124, 14);
+-- Electabuzz
+INSERT INTO pokemon_types(natDexNum, typeId) VALUES (125, 13);
+-- Magmar
+INSERT INTO pokemon_types(natDexNum, typeId) VALUES (126, 10);
+-- Pinsir
+INSERT INTO pokemon_types(natDexNum, typeId) VALUES (127, 7);
+-- Tauros
+INSERT INTO pokemon_types(natDexNum, typeId) VALUES (128, 1);
+-- Magikarp
+INSERT INTO pokemon_types(natDexNum, typeId) VALUES (129, 11);
+-- Gyarados
+INSERT INTO pokemon_types(natDexNum, typeId) VALUES (130, 11);
+INSERT INTO pokemon_types(natDexNum, typeId) VALUES (130, 3);
+-- Lapras
+INSERT INTO pokemon_types(natDexNum, typeId) VALUES (131, 11);
+INSERT INTO pokemon_types(natDexNum, typeId) VALUES (131, 15);
+-- Ditto
+INSERT INTO pokemon_types(natDexNum, typeId) VALUES (132, 1);
+-- Eevee
+INSERT INTO pokemon_types(natDexNum, typeId) VALUES (133, 1);
+-- Vaporeon
+INSERT INTO pokemon_types(natDexNum, typeId) VALUES (134, 11);
+-- Jolteon
+INSERT INTO pokemon_types(natDexNum, typeId) VALUES (135, 13);
+-- Flareon
+INSERT INTO pokemon_types(natDexNum, typeId) VALUES (136, 10);
+-- Porygon
+INSERT INTO pokemon_types(natDexNum, typeId) VALUES (137, 1);
+-- Omanyte
+INSERT INTO pokemon_types(natDexNum, typeId) VALUES (138, 6);
+INSERT INTO pokemon_types(natDexNum, typeId) VALUES (138, 11);
+-- Omastar
+INSERT INTO pokemon_types(natDexNum, typeId) VALUES (139, 6);
+INSERT INTO pokemon_types(natDexNum, typeId) VALUES (139, 11);
+-- Kabuto
+INSERT INTO pokemon_types(natDexNum, typeId) VALUES (140, 6);
+INSERT INTO pokemon_types(natDexNum, typeId) VALUES (140, 11);
+-- Kabutops
+INSERT INTO pokemon_types(natDexNum, typeId) VALUES (141, 6);
+INSERT INTO pokemon_types(natDexNum, typeId) VALUES (141, 11);
+-- Aerodactyl
+INSERT INTO pokemon_types(natDexNum, typeId) VALUES (142, 6);
+INSERT INTO pokemon_types(natDexNum, typeId) VALUES (142, 3);
+-- Snorlax
+INSERT INTO pokemon_types(natDexNum, typeId) VALUES (143, 1);
+-- Articuno
+INSERT INTO pokemon_types(natDexNum, typeId) VALUES (144, 15);
+INSERT INTO pokemon_types(natDexNum, typeId) VALUES (144, 3);
+-- Zapdos
+INSERT INTO pokemon_types(natDexNum, typeId) VALUES (145, 13);
+INSERT INTO pokemon_types(natDexNum, typeId) VALUES (145, 3);
+-- Moltres
+INSERT INTO pokemon_types(natDexNum, typeId) VALUES (146, 10);
+INSERT INTO pokemon_types(natDexNum, typeId) VALUES (146, 3);
+-- Dratini
+INSERT INTO pokemon_types(natDexNum, typeId) VALUES (147, 16);
+-- Dragonair
+INSERT INTO pokemon_types(natDexNum, typeId) VALUES (148, 16);
+-- Dragonite
+INSERT INTO pokemon_types(natDexNum, typeId) VALUES (149, 16);
+INSERT INTO pokemon_types(natDexNum, typeId) VALUES (149, 3);
+-- Mewtwo
+INSERT INTO pokemon_types(natDexNum, typeId) VALUES (150, 14);
+-- Mew
+INSERT INTO pokemon_types(natDexNum, typeId) VALUES (151, 14);
 
 -- +goose Down
