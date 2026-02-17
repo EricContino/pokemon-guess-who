@@ -1,11 +1,15 @@
 -- +goose Up
 CREATE TABLE pokemon_types (
-	id INT AUTO_INCREMENT,
+	id SERIAL PRIMARY KEY,
 	natDexNum INT,
 	typeId INT, 
-	PRIMARY KEY (natDexNum, typeId),
-	FOREIGN KEY natDexNum REFERENCES pokemon(natDexNum),
-	FOREIGN KEY typeId REFERNECES types(id)
+       	UNIQUE (natDexNum, typeId),
+	CONSTRAINT fk_pokemon
+		FOREIGN KEY(natDexNum) 
+			REFERENCES pokemon(natDexNum),
+	CONSTRAINT fk_types
+		FOREIGN KEY(typeId)
+       			REFERENCES types(id)
 );
 
 --Bulbasaur
@@ -379,3 +383,4 @@ INSERT INTO pokemon_types(natDexNum, typeId) VALUES (150, 14);
 INSERT INTO pokemon_types(natDexNum, typeId) VALUES (151, 14);
 
 -- +goose Down
+DROP TABLE pokemon_types;
