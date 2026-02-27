@@ -9,10 +9,11 @@ import (
 )
 
 type Pokemon struct {
-	Natdexnum int32
-	Name      string
-	Gen       int32
-	Spriteurl string
+	Natdexnum      int32
+	Name           string
+	Gen            int32
+	Spriteurl      string
+	Spritelocation string
 }
 
 type PokemonType struct {

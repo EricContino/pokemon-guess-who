@@ -1,2 +1,5 @@
 pokegw
 .env
+static/sprites/*
+bin/
+server

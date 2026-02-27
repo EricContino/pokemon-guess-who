@@ -12,7 +12,7 @@ import (
 )
 
 const getPokemonByGen = `-- name: GetPokemonByGen :many
-SELECT natdexnum, name, gen, spriteurl FROM pokemon
+SELECT natdexnum, name, gen, spriteurl, spritelocation FROM pokemon
 WHERE gen = ANY($1::int[])
 ORDER BY natDexNum
 `
@@ -31,6 +31,7 @@ func (q *Queries) GetPokemonByGen(ctx context.Context, gens []int32) ([]Pokemon,
 			&i.Name,
 			&i.Gen,
 			&i.Spriteurl,
+			&i.Spritelocation,
 		); err != nil {
 			return nil, err
 		}
