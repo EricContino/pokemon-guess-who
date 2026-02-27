@@ -1,0 +1,15 @@
+package main
+
+import "github.com/EricContino/pokemon-guess-who/internal/database"
+
+templ PokemonList(pokemon []database.Pokemon) {
+    <h1>Original 151</h1>
+    <ul>
+        for _, mon := range pokemon {
+            <li>
+                <h2>#{ mon.Natdexnum } { mon.Name }</h2>
+                <img src={mon.Spriteurl}>
+            </li>
+        }
+    </ul>
+}

@@ -1,16 +1,18 @@
 package main
 
 import (
+	"database/sql"
 	"log"
 	"net/http"
+	"os"
 
-	"github.com/EricContino/chirpy/internal/database"
+	"github.com/EricContino/pokemon-guess-who/internal/database"
 	"github.com/joho/godotenv"
 	_ "github.com/lib/pq"
 )
 
 type apiConfig struct {
-	db *database.dbQueries
+	db *database.Queries
 }
 
 func main() {
@@ -29,15 +31,17 @@ func main() {
 	}
 	dbQueries := database.New(dbConn)
 
+	apiCfg := apiConfig{
+		db: dbQueries,
+	}
+
 	mux := http.NewServeMux()
 	mux.Handle("/", http.FileServer(http.Dir(filepathRoot)))
+	mux.HandleFunc("GET /api/pokemon", apiCfg.handlerPokemonGet)
+
 	srv := &http.Server{
 		Addr:    ":" + port,
 		Handler: mux,
-	}
-
-	apiConfig := apiConfig{
-		db: dbQueries,
 	}
 
 	log.Printf("Serving on port: %s\n", port)
