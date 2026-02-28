@@ -23,7 +23,8 @@ type PokemonType struct {
 }
 
 type Type struct {
-	ID      int32
-	Name    string
-	Logourl string
+	ID           int32
+	Name         string
+	Logourl      string
+	Logolocation string
 }

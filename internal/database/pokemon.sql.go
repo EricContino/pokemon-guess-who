@@ -11,6 +11,40 @@ import (
 	"github.com/lib/pq"
 )
 
+const getAllPokemon = `-- name: GetAllPokemon :many
+SELECT natdexnum, name, gen, spriteurl, spritelocation FROM pokemon
+ORDER BY natDexNum
+`
+
+func (q *Queries) GetAllPokemon(ctx context.Context) ([]Pokemon, error) {
+	rows, err := q.db.QueryContext(ctx, getAllPokemon)
+	if err != nil {
+		return nil, err
+	}
+	defer rows.Close()
+	var items []Pokemon
+	for rows.Next() {
+		var i Pokemon
+		if err := rows.Scan(
+			&i.Natdexnum,
+			&i.Name,
+			&i.Gen,
+			&i.Spriteurl,
+			&i.Spritelocation,
+		); err != nil {
+			return nil, err
+		}
+		items = append(items, i)
+	}
+	if err := rows.Close(); err != nil {
+		return nil, err
+	}
+	if err := rows.Err(); err != nil {
+		return nil, err
+	}
+	return items, nil
+}
+
 const getPokemonByGen = `-- name: GetPokemonByGen :many
 SELECT natdexnum, name, gen, spriteurl, spritelocation FROM pokemon
 WHERE gen = ANY($1::int[])

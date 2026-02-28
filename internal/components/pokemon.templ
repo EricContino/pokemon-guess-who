@@ -1,14 +1,22 @@
 package components
 
-import "github.com/EricContino/pokemon-guess-who/internal/database"
-
-templ PokemonList(pokemon []database.Pokemon) {
+import (
+    "github.com/EricContino/pokemon-guess-who/internal/models"
+)
+// TODO need  lock down ordering
+// perhaps final gameboard will just take a slice
+templ PokemonList(pokemon map[int]models.PokemonWithTypes) {
     <h1>Original 151</h1>
     <ul>
         for _, mon := range pokemon {
             <li>
-                <h2>#{ mon.Natdexnum } { mon.Name }</h2>
+                <h2>#{ mon.NatDexNum } { mon.Name }</h2>
                 <img src={templ.URL(mon.Spritelocation)} width="500" height="500">
+                <ul>
+                    for _, monType := range mon.Types {
+                        <img src={monType.Logolocation}>
+                    }
+                </ul>
             </li>
         }
     </ul>
