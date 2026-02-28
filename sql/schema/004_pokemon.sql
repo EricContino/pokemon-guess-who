@@ -1,7 +1,7 @@
 -- +goose Up
 ALTER TABLE pokemon ADD COLUMN spriteLocation TEXT NOT NULL DEFAULT '';
 
-UPDATE pokemon SET spriteLocation = '/static/sprites/gen01/0001Bulbasaur.png'    WHERE natDexNum = 1;
+UPDATE pokemon SET spriteLocation = 'static/sprites/gen01/0001Bulbasaur.png'    WHERE natDexNum = 1;
 UPDATE pokemon SET spriteLocation = 'static/sprites/gen01/0002Ivysaur.png'      WHERE natDexNum = 2;
 UPDATE pokemon SET spriteLocation = 'static/sprites/gen01/0003Venusaur.png'     WHERE natDexNum = 3;
 UPDATE pokemon SET spriteLocation = 'static/sprites/gen01/0004Charmander.png'   WHERE natDexNum = 4;
