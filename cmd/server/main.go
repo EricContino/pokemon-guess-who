@@ -35,9 +35,20 @@ func main() {
 		db: dbQueries,
 	}
 
+	// 1. Create a file server for the 'static' directory
+	// http.Dir specifies the local directory to serve files from
+	staticFiles := http.FileServer(http.Dir("static"))
+
+	// 2. Create a new ServeMux to handle different routes
 	mux := http.NewServeMux()
-	//mux.Handle("/", http.FileServer(http.Dir(filepathRoot)))
-	mux.HandleFunc("GET /", apiCfg.handlerPokemonGet)
+
+	// 3. Handle requests to "/static/"
+	// http.StripPrefix removes the "/static/" part of the URL path before passing it to the file server
+	mux.Handle("/static/", http.StripPrefix("/static/", staticFiles))
+
+	// 4. Handle the main page request using the templ component
+	//mux.Handle("/", templ.Handler(Index()))
+	mux.HandleFunc("/", apiCfg.handlerPokemonGet)
 
 	srv := &http.Server{
 		Addr:    ":" + port,

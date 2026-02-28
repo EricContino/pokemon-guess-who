@@ -8,7 +8,7 @@ templ PokemonList(pokemon []database.Pokemon) {
         for _, mon := range pokemon {
             <li>
                 <h2>#{ mon.Natdexnum } { mon.Name }</h2>
-                <img src={mon.Spritelocation}>
+                <img src={templ.URL(mon.Spritelocation)}>
             </li>
         }
     </ul>
