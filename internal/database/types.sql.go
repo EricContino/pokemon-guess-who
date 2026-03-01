@@ -44,3 +44,35 @@ func (q *Queries) GetAllPokemonTypes(ctx context.Context) ([]GetAllPokemonTypesR
 	}
 	return items, nil
 }
+
+const getAllTypes = `-- name: GetAllTypes :many
+SELECT id, name, logourl, logolocation FROM types ORDER BY id
+`
+
+func (q *Queries) GetAllTypes(ctx context.Context) ([]Type, error) {
+	rows, err := q.db.QueryContext(ctx, getAllTypes)
+	if err != nil {
+		return nil, err
+	}
+	defer rows.Close()
+	var items []Type
+	for rows.Next() {
+		var i Type
+		if err := rows.Scan(
+			&i.ID,
+			&i.Name,
+			&i.Logourl,
+			&i.Logolocation,
+		); err != nil {
+			return nil, err
+		}
+		items = append(items, i)
+	}
+	if err := rows.Close(); err != nil {
+		return nil, err
+	}
+	if err := rows.Err(); err != nil {
+		return nil, err
+	}
+	return items, nil
+}
