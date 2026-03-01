@@ -6,3 +6,6 @@ ORDER BY natDexNum;
 -- name: GetAllPokemon :many
 SELECT * FROM pokemon
 ORDER BY natDexNum;
+
+-- name: GetAvailableGens :many
+SELECT DISTINCT gen FROM pokemon;

@@ -45,6 +45,33 @@ func (q *Queries) GetAllPokemon(ctx context.Context) ([]Pokemon, error) {
 	return items, nil
 }
 
+const getAvailableGens = `-- name: GetAvailableGens :many
+SELECT DISTINCT gen FROM pokemon
+`
+
+func (q *Queries) GetAvailableGens(ctx context.Context) ([]int32, error) {
+	rows, err := q.db.QueryContext(ctx, getAvailableGens)
+	if err != nil {
+		return nil, err
+	}
+	defer rows.Close()
+	var items []int32
+	for rows.Next() {
+		var gen int32
+		if err := rows.Scan(&gen); err != nil {
+			return nil, err
+		}
+		items = append(items, gen)
+	}
+	if err := rows.Close(); err != nil {
+		return nil, err
+	}
+	if err := rows.Err(); err != nil {
+		return nil, err
+	}
+	return items, nil
+}
+
 const getPokemonByGen = `-- name: GetPokemonByGen :many
 SELECT natdexnum, name, gen, spriteurl, spritelocation FROM pokemon
 WHERE gen = ANY($1::int[])

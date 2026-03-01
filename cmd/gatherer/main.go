@@ -14,6 +14,10 @@ import (
 	_ "github.com/lib/pq"
 )
 
+const (
+	SPRITES_DIR string = "static/sprites"
+)
+
 func main() {
 	godotenv.Load()
 	dbURL := os.Getenv("DB_URL")
@@ -27,6 +31,21 @@ func main() {
 	}
 	dbQueries := database.New(dbConn)
 
+	gens, err := dbQueries.GetAvailableGens(context.Background())
+	if err != nil {
+		log.Fatalf("Couldn't get available gens: %s", err)
+		return
+	}
+	for _, gen := range gens {
+		genDir := fmt.Sprintf("gen%02d", gen)
+		genDir = SPRITES_DIR + "/" + genDir
+		err := os.MkdirAll(genDir, os.ModePerm)
+		if err != nil {
+			// Log the error and exit if creation fails
+			log.Fatalf("Failed to create genDir: %s: %s", genDir, err)
+		}
+	}
+
 	pokemon, err := dbQueries.GetAllPokemon(context.Background())
 	if err != nil {
 		log.Fatalf("Couldn't get pokemon: %s", err)
@@ -34,9 +53,31 @@ func main() {
 	}
 	for _, mon := range pokemon {
 		fmt.Printf("Downloading %s to %s\n", mon.Spriteurl, mon.Spritelocation)
-		err := downloadFile(mon.Spriteurl, mon.Spritelocation)
+		spriteLoc := "./" + mon.Spritelocation
+		err := downloadFile(mon.Spriteurl, spriteLoc)
 		if err != nil {
 			log.Fatalf("Couldn't download %s: %s", mon.Spriteurl, err)
+		}
+	}
+
+	typesDir := SPRITES_DIR + "/types"
+	err = os.MkdirAll(typesDir, os.ModePerm)
+	if err != nil {
+		// Log the error and exit if creation fails
+		log.Fatalf("Failed to create genDir: %s: %s", typesDir, err)
+	}
+
+	types, err := dbQueries.GetAllTypes(context.Background())
+	if err != nil {
+		log.Fatalf("Couldn't get types: %s", err)
+		return
+	}
+
+	for _, t := range types {
+		spriteLoc := "./" + t.Logolocation
+		err := downloadFile(t.Logourl, spriteLoc)
+		if err != nil {
+			log.Fatalf("Couldn't download %s: %s", t.Logourl, err)
 		}
 	}
 }
