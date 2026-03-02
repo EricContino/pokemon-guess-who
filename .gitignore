@@ -2,3 +2,4 @@ pokegw
 .env
 static/sprites/*
 bin/
+tags
