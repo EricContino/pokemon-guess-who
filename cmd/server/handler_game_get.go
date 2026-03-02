@@ -1,13 +1,15 @@
 package main
-import (
-	"net/http"
 
-	"github.com/EricContino/pokemon-guess-who/internal/components"
-	"github.com/EricContino/pokemon-guess-who/internal/database"
-	"github.com/EricContino/pokemon-guess-who/internal/models"
-)
+func (cfg *apiConfig) handlerGameGet(w http.ResponseWriter, r *http.Request) {
+	gameCode := int(r.PathValue("gameCode"))
+	playerNum := int(r.PathValue("playerNum"))
+	
+	// TODO check if game exists
+	// if not
+	// if player 1 create the game
+	// if player 2 say game not created
+	// return game date
 
-func (cfg *apiConfig) handlerPokemonGet(w http.ResponseWriter, r *http.Request) {
 	pokemon, err := cfg.db.GetAllPokemon(r.Context())
 	if err != nil {
 		respondWithError(w, http.StatusNotFound, "Couldn't get pokemon", err)
@@ -35,7 +37,4 @@ func (cfg *apiConfig) handlerPokemonGet(w http.ResponseWriter, r *http.Request) 
 			pokemonWithTypes[int(monType.Natdexnum.Int32)] = mon
 		}
 	}
-
-	component := components.PokemonList(pokemonWithTypes)
-	component.Render(r.Context(), w)
 }

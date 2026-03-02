@@ -11,3 +11,8 @@ type PokemonWithTypes struct {
 	Gen            int
 	Types          []database.GetAllPokemonTypesRow
 }
+
+type Game struct {
+	PlayerPokemon map[int]PokemonWithTypes
+	GameBoard []PokemonWithTypes
+}

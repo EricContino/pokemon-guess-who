@@ -6,6 +6,7 @@ import (
 	"net/http"
 	"os"
 
+	"github.com/EricContino/pokemon-guess-who/internal/pokecache"
 	"github.com/EricContino/pokemon-guess-who/internal/database"
 	"github.com/joho/godotenv"
 	_ "github.com/lib/pq"
@@ -13,6 +14,7 @@ import (
 
 type apiConfig struct {
 	db *database.Queries
+	cache pokecache.Cache
 }
 
 func main() {
@@ -49,6 +51,7 @@ func main() {
 	// 4. Handle the main page request using the templ component
 	//mux.Handle("/", templ.Handler(Index()))
 	mux.HandleFunc("/", apiCfg.handlerPokemonGet)
+	mux.HandleFunc("/{gameCode}/{playerNum}", apiCfg.handlerPokemonGet)
 
 	srv := &http.Server{
 		Addr:    ":" + port,
