@@ -5,15 +5,16 @@ import (
 	"log"
 	"net/http"
 	"os"
+	"time"
 
-	"github.com/EricContino/pokemon-guess-who/internal/pokecache"
 	"github.com/EricContino/pokemon-guess-who/internal/database"
+	"github.com/EricContino/pokemon-guess-who/internal/pokecache"
 	"github.com/joho/godotenv"
 	_ "github.com/lib/pq"
 )
 
 type apiConfig struct {
-	db *database.Queries
+	db    *database.Queries
 	cache pokecache.Cache
 }
 
@@ -34,7 +35,8 @@ func main() {
 	dbQueries := database.New(dbConn)
 
 	apiCfg := apiConfig{
-		db: dbQueries,
+		db:    dbQueries,
+		cache: pokecache.NewCache(time.Minute * 5),
 	}
 
 	// 1. Create a file server for the 'static' directory
@@ -51,7 +53,7 @@ func main() {
 	// 4. Handle the main page request using the templ component
 	//mux.Handle("/", templ.Handler(Index()))
 	mux.HandleFunc("/", apiCfg.handlerPokemonGet)
-	mux.HandleFunc("/{gameCode}/{playerNum}", apiCfg.handlerPokemonGet)
+	mux.HandleFunc("/game/{gameCode}/{playerNum}", apiCfg.handlerGameGet)
 
 	srv := &http.Server{
 		Addr:    ":" + port,

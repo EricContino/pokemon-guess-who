@@ -26,7 +26,7 @@ INSERT INTO pokemon_types(natDexNum, typeId) VALUES (4, 10);
 -- Charmeleon
 INSERT INTO pokemon_types(natDexNum, typeId) VALUES (5, 10);
 -- Charizard
-INSERT INTO pokemon_types(natDexNum, typeId) VALUES (6, 11);
+INSERT INTO pokemon_types(natDexNum, typeId) VALUES (6, 10);
 INSERT INTO pokemon_types(natDexNum, typeId) VALUES (6, 3);
 -- Squirtle
 INSERT INTO pokemon_types(natDexNum, typeId) VALUES (7, 11);

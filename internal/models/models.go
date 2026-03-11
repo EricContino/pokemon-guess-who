@@ -4,6 +4,8 @@ import (
 	"github.com/EricContino/pokemon-guess-who/internal/database"
 )
 
+const PokemonPerGame int = 25
+
 type PokemonWithTypes struct {
 	NatDexNum      int
 	Name           string
@@ -14,5 +16,5 @@ type PokemonWithTypes struct {
 
 type Game struct {
 	PlayerPokemon map[int]PokemonWithTypes
-	GameBoard []PokemonWithTypes
+	GameBoard     []PokemonWithTypes
 }
