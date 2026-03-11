@@ -6,27 +6,38 @@ import (
 // TODO need  lock down ordering
 // perhaps final gameboard will just take a slice
 templ Game(playerNum int, game models.Game) {
-    <h1>Pokemon Guess Who</h1>
-    <div>
-        <h2>Your Pokemon is #{ game.PlayerPokemon[playerNum].NatDexNum } { game.PlayerPokemon[playerNum].Name }</h2>
-        <img src={templ.URL(game.PlayerPokemon[playerNum].Spritelocation)} width="500" height="500">
-        <ul>
-            for _, monType := range game.PlayerPokemon[playerNum].Types {
-                <img src={monType.Logolocation}>
-            }
-        </ul>
-    </div>
-    <div class="gameboard">
-        for _, mon := range game.GameBoard {
-            <li>
-                <h2>#{ mon.NatDexNum } { mon.Name }</h2>
-                <img src={templ.URL(mon.Spritelocation)} width="100" height="100">
+    <!DOCTYPE html>
+	<html>
+        <head lang="en">
+            <meta charset="utf-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+            <title>Photo Gallery</title>
+            <link rel="stylesheet" href="/static/styles.css">
+        </head>
+		<body>
+            <h1>Pokemon Guess Who</h1>
+            <div>
+                <h2>Your Pokemon is #{ game.PlayerPokemon[playerNum].NatDexNum } { game.PlayerPokemon[playerNum].Name }</h2>
+                <img src={templ.URL(game.PlayerPokemon[playerNum].Spritelocation)} class="pokemon-sprite">
                 <ul>
-                    for _, monType := range mon.Types {
+                    for _, monType := range game.PlayerPokemon[playerNum].Types {
                         <img src={monType.Logolocation}>
                     }
                 </ul>
-            </li>
-        }
-    </div>
+            </div>
+            <div class="gameboard">
+                for _, mon := range game.GameBoard {
+                    <div class="pokemon-card">
+                        <h2>#{ mon.NatDexNum } { mon.Name }</h2>
+                        <img src={templ.URL(mon.Spritelocation)} class="pokemon-sprite">
+                        <ul>
+                            for _, monType := range mon.Types {
+                                <img src={monType.Logolocation}>
+                            }
+                        </ul>
+                    </div>
+                }
+            </div>
+		</body>
+	</html>
 }
