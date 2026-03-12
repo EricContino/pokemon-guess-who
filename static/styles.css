@@ -1,11 +1,17 @@
 * {
   box-sizing: border-box;
   background: #3b3939;
+  color: #fff
 }
 
 body {
   margin: 0;
   font-family: sans-serif;
+}
+
+h2 {
+  background: #0a0a23;
+
 }
 
 .header {
@@ -34,7 +40,10 @@ body {
   max-width: 12vw;
   object-fit: cover;
   border-radius: 10px;
-  background: #9e0e0e
+  background: #0a0a23;
+  overflow: hidden;
+
+  border: 4px solid #fdb347;
 }
 
 .pokemon-card .pokemon-sprite {
@@ -42,7 +51,60 @@ body {
   height: 100%;
 }
 
+.pokemon-card .types {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  background: #0a0a23;
+}
 
+
+.player-hud {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  gap: 16px;
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 20px 10px;
+  
+}
+
+.player-hud .player-card {
+  width: 100%;
+  max-width: 12vw;
+  object-fit: cover;
+  border-radius: 10px;
+  background: #0a0a23;
+
+  border: 4px solid #fdb347;
+  overflow: hidden;
+}
+
+.player-card .pokemon-sprite {
+  width: 100%;
+  height: 100%;
+
+}
+
+.player-card .types {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  background: #0a0a23;
+}
+
+.types .type {
+  width: 25%;
+  height: 100%;
+  margin: auto;
+}
 
 .gallery::after {
   content: "";
